@@ -64,6 +64,14 @@
             background-color: #373737;
             transform: scale(1.05);
         }
+        .interactive-image {
+            position: absolute;
+            top: 30%; /* Move image up */
+            left: 70%; /* Move image to the right */
+            transform: translate(-50%, -50%) rotateY(0deg);
+            transition: transform 0.1s;
+            pointer-events: auto; /* Allow interaction */
+        }
         footer {
             text-align: center;
             padding: 20px;
@@ -110,9 +118,31 @@
         <h2>Join Our Community</h2>
         <p>Join our Discord server to stay updated and connect with fellow users.</p>
         <button class="button" onclick="window.location.href='https://discord.gg/63pT8eeVkJ'">Join Discord</button>
+        <img class="interactive-image" src="https://i.imgur.com/ts0DQzO.png" alt="Interactive Image" />
     </div>
     <footer>
         <p>&copy; 2024 Abyss. All rights reserved.</p>
     </footer>
+
+    <script>
+      const image = document.querySelector('.interactive-image');
+      image.addEventListener('mousemove', (e) => {
+          const { clientX: mouseX, clientY: mouseY } = e;
+          const { left, top, width, height } = image.getBoundingClientRect();
+          const imageX = left + width / 2;
+          const imageY = top + height / 2;
+
+          const deltaX = mouseX - imageX;
+          const deltaY = mouseY - imageY;
+          const angleY = (deltaX / width) * 30; // Adjust the multiplier for sensitivity
+          const angleX = -(deltaY / height) * 30; // Adjust the multiplier for sensitivity
+
+          image.style.transform = `translate(-50%, -50%) rotateY(${angleY}deg) rotateX(${angleX}deg)`;
+      });
+
+      image.addEventListener('mouseleave', () => {
+          image.style.transform = `translate(-50%, -50%) rotateY(0deg) rotateX(0deg)`; // Reset on mouse leave
+      });
+  </script>
 </body>
 </html>
