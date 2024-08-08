@@ -88,6 +88,42 @@
             border-radius: 8px;
             margin: 20px 0;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 0;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #222222;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -126,13 +162,32 @@
         </div>
         <h2>Download Abyss Now</h2>
         <p>Get the latest version of Abyss and start enhancing your Roblox experience.</p>
-        <button class="button">Download Abyss</button>
+        <button class="button" onclick="showWarning('This feature is not available')">Download Abyss</button>
         <h2>Join Our Community</h2>
         <p>Join our Discord server to stay updated and connect with fellow users.</p>
         <button class="button" onclick="window.location.href='https://discord.gg/63pT8eeVkJ'">Join Discord</button>
     </div>
+
+    <div id="warningModal" class="modal">
+        <div class="modal-content">
+            <h2>Warning</h2>
+            <p id="warningMessage"></p>
+            <button class="button" onclick="closeWarning()">Okay</button>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2024 Abyss. All rights reserved.</p>
     </footer>
+
+    <script>
+        function showWarning(message) {
+            document.getElementById('warningMessage').textContent = message;
+            document.getElementById('warningModal').style.display = 'flex';
+        }
+        function closeWarning() {
+            document.getElementById('warningModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
