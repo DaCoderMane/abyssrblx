@@ -188,7 +188,20 @@
 
     <script>
         function download() {
-            window.location.href = './Abyss.rar';
+            // Create a hidden link element
+            const link = document.createElement('a');
+            link.href = 'https://github.com/DaCoderMane/AbyssDir/raw/main/Abyss.rar';  // URL of the file to download
+            link.download = '';  // This triggers the download without specifying a filename
+            link.style.display = 'none';  // Hide the link from view
+
+            // Append the link to the body
+            document.body.appendChild(link);
+
+            // Trigger the click event on the link
+            link.click();
+
+            // Remove the link from the document
+            document.body.removeChild(link);
         }
         function showWarning(message) {
             document.getElementById('warningMessage').textContent = message;
