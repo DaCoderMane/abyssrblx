@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abyss Exploits - Revolutionizing Roblox Exploits">
+    <meta name="keywords" content="Roblox, exploits, scripts, automation, gaming">
     <meta content="Abyss Exploits" property="og:title" />
-    <meta content="The revelution of exploiting.." property="og:description" />
+    <meta content="The revolution of exploiting.." property="og:description" />
     <meta content="https://abyssrbx.vercel.app" property="og:url" />
     <meta content="https://i.imgur.com/CAiX5ad.png" property="og:image" />
     <meta content="#43B581" data-react-helmet="true" name="theme-color" />
@@ -55,13 +57,15 @@
             margin: 40px 0;
         }
         .feature {
-            background: #222222;
-            border-radius: 8px;
+            background: #222;
+            border-radius: 12px;
             padding: 20px;
-            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .feature:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
         .button {
             background-color: #202020;
@@ -78,16 +82,15 @@
         .button:hover {
             background-color: #373737;
             transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         footer {
-            text-align: center;
+            background: #1f1f1f;
             padding: 20px;
-            background-color: #1f1f1f;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 40px;
+            border-top: 1px solid #373737;
+            font-size: 0.9em;
         }
+
         img {
             max-width: 100%;
             height: auto;
@@ -111,6 +114,7 @@
         .modal-content {
             background-color: #222222;
             margin: auto;
+            backdrop-filter: blur(10px);
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
@@ -129,6 +133,17 @@
             color: white;
             text-decoration: none;
             cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            h1, h2 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -171,13 +186,13 @@
         <button class="button" onclick="showWarning('Executor is currently down..')">Download Abyss</button>
         <h2>Join Our Community</h2>
         <p>Join our Discord server to stay updated and connect with fellow users.</p>
-        <button class="button" onclick="window.location.href='https://discord.gg/63pT8eeVkJ'">Join Discord</button>
+        <button class="button" aria-label="Join Discord" onclick="window.location.href='https://discord.gg/63pT8eeVkJ'">Join Discord</button>
     </div>
 
-    <div id="warningModal" class="modal">
+    <div id="warningModal" class="modal" role="dialog" aria-labelledby="warningMessage" aria-hidden="true">
         <div class="modal-content">
-            <h2>Warning</h2>
-            <p id="warningMessage"></p>
+            <h2 id="warningMessage">Warning</h2>
+            <p id="warningMessageText"></p>
             <button class="button" onclick="closeWarning()">Okay</button>
         </div>
     </div>
@@ -203,7 +218,7 @@
             document.body.removeChild(link);
         }
         function showWarning(message) {
-            document.getElementById('warningMessage').textContent = message;
+            document.getElementById('warningMessageText').textContent = message;
             document.getElementById('warningModal').style.display = 'flex';
         }
         function closeWarning() {
