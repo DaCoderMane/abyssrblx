@@ -188,11 +188,10 @@
 
     <script>
         function download() {
-            // Create a hidden link element
             const link = document.createElement('a');
-            link.href = 'https://github.com/DaCoderMane/AbyssDir/raw/main/Abyss.rar';  // URL of the file to download
-            link.download = '';  // This triggers the download without specifying a filename
-            link.style.display = 'none';  // Hide the link from view
+            link.href = 'https://github.com/DaCoderMane/AbyssDir/raw/main/Abyss.rar';
+            link.download = '';
+            link.style.display = 'none';
 
             // Append the link to the body
             document.body.appendChild(link);
