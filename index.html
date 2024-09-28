@@ -124,42 +124,16 @@
                 0 0 60px #43B581;
             margin: 40px 0;
         }
-
-        /* LOADING ANIMATION */
-        #loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #111;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .neon-white {
+            text-shadow:
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #fff,
+                0 0 40px #fff,
+                0 0 50px #fff,
+                0 0 60px #fff,
+                0 0 70px #fff;
         }
-
-        .loading-text {
-            font-size: 3em;
-            font-weight: 600;
-            color: #43B581;
-            text-shadow: 0 0 10px #43B581, 0 0 20px #43B581, 0 0 30px #43B581;
-            animation: flashing 1.5s infinite;
-        }
-
-        @keyframes flashing {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .hidden {
-            display: none;
-        }
-
         .modal {
             display: none;
             position: fixed;
@@ -208,19 +182,56 @@
                 font-size: 1em;
             }
         }
+        /* Typewriter Effect */
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #111111;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            z-index: 2;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #fff,
+                0 0 40px #fff,
+                0 0 50px #fff,
+                0 0 60px #fff;
+            transition: opacity 1s ease;
+        }
+        .caret {
+            border-right: 2px solid #fff;
+            animation: blink 0.7s steps(1) infinite;
+        }
+        @keyframes blink {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: white; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
     </style>
 </head>
 <body>
-    <div id="loading">
-        <div class="loading-text">Loading Abyss...</div>
-    </div>
+    <div id="loading"><span id="loadingText"></span><span class="caret"></span></div>
 
     <header>
         <h1 class="neon-textH1">Abyss</h1>
         <p>Unlock the full potential of Roblox with Abyss.</p>
     </header>
     <div class="container">
-        <img src="https://i.imgur.com/ts0DQzO.png" alt="Executor" class="rounded-lg image-shadow">
+      <img src="https://i.imgur.com/ts0DQzO.png" alt="Executor" class="rounded-lg image-shadow">
         <h2 class="neon-text">Features</h2>
         <div class="features">
             <div class="feature">
@@ -249,22 +260,56 @@
             </div>
         </div>
         <h2 class="neon-text">Download Abyss Now</h2>
-        <p>Get the ultimate exploit tool for Roblox.</p>
-        <a class="button" href="#">Download</a>
-        <a class="button" href="#">Learn More</a>
+        <p>Get the latest version of Abyss and start enhancing your Roblox experience.</p>
+        <button class="button" onclick="showWarning('Executor is currently down..')">Download Abyss</button>
+        <h2 class="neon-text">Join Our Community</h2>
+        <p>Join our Discord server to stay updated and connect with fellow users.</p>
+        <button class="button" aria-label="Join Discord" onclick="window.location.href='https://discord.gg/63pT8eeVkJ'">Join Discord</button>
+    </div>
+
+    <div id="warningModal" class="modal" role="dialog" aria-labelledby="warningMessage" aria-hidden="true">
+        <div class="modal-content">
+            <h2 id="warningMessage">Warning</h2>
+            <p id="warningMessageText"></p>
+            <button class="button" onclick="closeWarning()">Okay</button>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2023 Abyss Exploits. All rights reserved.</p>
+        <p>&copy; 2024 Abyss. All rights reserved.</p>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const loadingScreen = document.getElementById('loading');
-            setTimeout(function() {
-                loadingScreen.classList.add('hidden');
-            }, 3000); // Simulate a 3-second loading time
-        });
+        const loadingText = "Abyss - The future of exploiting..";
+        const loadingElement = document.getElementById("loadingText");
+
+        function typeWriter() {
+            loadingText.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space
+                span.className = 'fade-in';
+                span.style.animationDelay = `${index * 0.1}s`;
+                loadingElement.appendChild(span);
+            });
+
+            setTimeout(() => {
+                document.getElementById("loading").style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById("loading").style.display = "none";
+                }, 1000);
+            }, (loadingText.length * 0.1 + 1) * 1000);
+        }
+
+        document.addEventListener("DOMContentLoaded", typeWriter);
+
+        function showWarning(message) {
+            document.getElementById('warningMessageText').textContent = message;
+            document.getElementById('warningModal').style.display = 'flex';
+        }
+
+        function closeWarning() {
+            document.getElementById('warningModal').style.display = 'none';
+        }
     </script>
 </body>
 </html>
