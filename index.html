@@ -124,6 +124,42 @@
                 0 0 60px #43B581;
             margin: 40px 0;
         }
+
+        /* LOADING ANIMATION */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-text {
+            font-size: 3em;
+            font-weight: 600;
+            color: #43B581;
+            text-shadow: 0 0 10px #43B581, 0 0 20px #43B581, 0 0 30px #43B581;
+            animation: flashing 1.5s infinite;
+        }
+
+        @keyframes flashing {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -175,12 +211,16 @@
     </style>
 </head>
 <body>
+    <div id="loading">
+        <div class="loading-text">Loading Abyss...</div>
+    </div>
+
     <header>
         <h1 class="neon-textH1">Abyss</h1>
         <p>Unlock the full potential of Roblox with Abyss.</p>
     </header>
     <div class="container">
-      <img src="https://i.imgur.com/ts0DQzO.png" alt="Executor" class="rounded-lg image-shadow">
+        <img src="https://i.imgur.com/ts0DQzO.png" alt="Executor" class="rounded-lg image-shadow">
         <h2 class="neon-text">Features</h2>
         <div class="features">
             <div class="feature">
@@ -209,48 +249,22 @@
             </div>
         </div>
         <h2 class="neon-text">Download Abyss Now</h2>
-        <p>Get the latest version of Abyss and start enhancing your Roblox experience.</p>
-        <button class="button" onclick="showWarning('Executor is currently down..')">Download Abyss</button>
-        <h2 class="neon-text">Join Our Community</h2>
-        <p>Join our Discord server to stay updated and connect with fellow users.</p>
-        <button class="button" aria-label="Join Discord" onclick="window.location.href='https://discord.gg/63pT8eeVkJ'">Join Discord</button>
-    </div>
-
-    <div id="warningModal" class="modal" role="dialog" aria-labelledby="warningMessage" aria-hidden="true">
-        <div class="modal-content">
-            <h2 id="warningMessage">Warning</h2>
-            <p id="warningMessageText"></p>
-            <button class="button" onclick="closeWarning()">Okay</button>
-        </div>
+        <p>Get the ultimate exploit tool for Roblox.</p>
+        <a class="button" href="#">Download</a>
+        <a class="button" href="#">Learn More</a>
     </div>
 
     <footer>
-        <p>&copy; 2024 Abyss. All rights reserved.</p>
+        <p>&copy; 2023 Abyss Exploits. All rights reserved.</p>
     </footer>
 
     <script>
-        function download() {
-            const link = document.createElement('a');
-            link.href = 'https://github.com/DaCoderMane/AbyssDir/raw/main/Abyss.rar';
-            link.download = '';
-            link.style.display = 'none';
-
-            // Append the link to the body
-            document.body.appendChild(link);
-
-            // Trigger the click event on the link
-            link.click();
-
-            // Remove the link from the document
-            document.body.removeChild(link);
-        }
-        function showWarning(message) {
-            document.getElementById('warningMessageText').textContent = message;
-            document.getElementById('warningModal').style.display = 'flex';
-        }
-        function closeWarning() {
-            document.getElementById('warningModal').style.display = 'none';
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const loadingScreen = document.getElementById('loading');
+            setTimeout(function() {
+                loadingScreen.classList.add('hidden');
+            }, 3000); // Simulate a 3-second loading time
+        });
     </script>
 </body>
 </html>
