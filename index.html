@@ -26,7 +26,6 @@
         header {
             padding: 40px 20px;
             text-align: center;
-            background: transparent;
         }
         h1 {
             color: white;
@@ -124,16 +123,6 @@
                 0 0 60px #43B581;
             margin: 40px 0;
         }
-        .neon-white {
-            text-shadow:
-                0 0 10px #fff,
-                0 0 20px #fff,
-                0 0 30px #fff,
-                0 0 40px #fff,
-                0 0 50px #fff,
-                0 0 60px #fff,
-                0 0 70px #fff;
-        }
         .modal {
             display: none;
             position: fixed;
@@ -144,7 +133,6 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.7);
-            padding-top: 0;
             align-items: center;
             justify-content: center;
         }
@@ -202,7 +190,7 @@
                 0 0 40px #fff,
                 0 0 50px #fff,
                 0 0 60px #fff;
-            transition: opacity 1s ease;
+            transition: opacity 1s ease, visibility 1s ease;
         }
         .caret {
             border-right: 2px solid #fff;
@@ -212,14 +200,14 @@
             0%, 100% { border-color: transparent; }
             50% { border-color: white; }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
         .fade-in {
             display: inline-block;
             opacity: 0;
             animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -231,7 +219,7 @@
         <p>Unlock the full potential of Roblox with Abyss.</p>
     </header>
     <div class="container">
-      <img src="https://i.imgur.com/ts0DQzO.png" alt="Executor" class="rounded-lg image-shadow">
+        <img src="https://i.imgur.com/ts0DQzO.png" alt="Executor" class="rounded-lg image-shadow">
         <h2 class="neon-text">Features</h2>
         <div class="features">
             <div class="feature">
@@ -286,7 +274,7 @@
         function typeWriter() {
             loadingText.split('').forEach((char, index) => {
                 const span = document.createElement('span');
-                span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space
+                span.textContent = char === ' ' ? '\u00A0' : char;
                 span.className = 'fade-in';
                 span.style.animationDelay = `${index * 0.1}s`;
                 loadingElement.appendChild(span);
@@ -294,9 +282,7 @@
 
             setTimeout(() => {
                 document.getElementById("loading").style.opacity = "0";
-                setTimeout(() => {
-                    document.getElementById("loading").style.display = "none";
-                }, 1000);
+                document.getElementById("loading").style.visibility = "hidden";
             }, (loadingText.length * 0.1 + 1) * 1000);
         }
 
