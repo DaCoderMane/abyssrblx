@@ -249,7 +249,7 @@
         </div>
         <h2 class="neon-text">Download Abyss Now</h2>
         <p>Get the latest version of Abyss and start enhancing your Roblox experience.</p>
-        <button class="button" onclick="showWarning('Executor is currently down..')">Download Abyss</button>
+        <button class="button" onclick="downloadAbyss()">Download Abyss</button>
         <h2 class="neon-text">Join Our Community</h2>
         <p>Join our Discord server to stay updated and connect with fellow users.</p>
         <button class="button" aria-label="Join Discord" onclick="window.location.href='https://discord.gg/63pT8eeVkJ'">Join Discord</button>
@@ -295,6 +295,21 @@
 
         function closeWarning() {
             document.getElementById('warningModal').style.display = 'none';
+        }
+
+        function downloadFile(url, fileName) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function downloadAbyss() {
+            const url = "https://raw.githubusercontent.com/DaCoderMane/AbyssDir/refs/heads/main/AbyssDevBuild.rar";
+            const fileName = "AbyssDevBuild.rar"; // Specify the file name to download
+            downloadFile(url, fileName);
         }
     </script>
 </body>
