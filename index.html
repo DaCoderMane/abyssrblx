@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abyss - Roblox Executor</title>
     <link rel="icon" href="Static/AbyssLogo.png" type="image/png">
-    <meta content="Abyss" property="og:title">
+    <meta content="Abyss - Roblox Executor" property="og:title">
     <meta content="The revolution of exploiting.." property="og:description">
     <meta content="#43B581" name="theme-color">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -19,18 +19,17 @@
         <span id="loadingText"></span>
         <span class="caret"></span>
     </div>
-
+    
     <div style="position: relative; z-index: 10;">
         <div class="page-content">
             <main class="flex items-center justify-center min-h-screen px-4 md:px-8 flex-col">
-                <p class="text-xl md:text-2xl mt-6 text-[#a3a1a6]">
-                    We have moved: https://abyssrbx.netlify.app/
-                </p>
+                <h1 class="neon-text">Abyss</h1>
+                <p class="center-text">We have moved to <a href="https://abyssrbx.netlify.app" target="_blank" rel="noopener noreferrer">https://abyssrbx.netlify.app</a></p>
             </main>
         </div>
     </div>
     <canvas id="SnowflakeCanvas" style="position: fixed; top: 0; left: 0; z-index: 0;"></canvas>
-
+    
     <script>
         const loadingText = "Abyss - The future of exploiting...";
         const loadingElement = document.getElementById("loadingText");
@@ -56,7 +55,7 @@
             const url = "https://github.com/DaCoderMane/AbyssDir/raw/refs/heads/main/Abyss.zip";
             const link = document.createElement('a');
             link.href = url;
-            link.download = "Abyss.zip";
+            link.download = "AbyssDevBuild.rar";
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
